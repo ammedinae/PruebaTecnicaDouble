@@ -1,0 +1,76 @@
+﻿@inject IPersonaServiceBLL _iPersonaServiceBLL;
+
+<div class="modal fade show" id="myModal" tabindex="-1" style="display:block; overflow-y: auto; background-color: rgba(10,10,10,.8);"
+     aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 card main-card">
+                    <div class="card-header text-center" style="display: grid !important;">
+                        Crear Usuario
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <EditForm Model="personaRequest" OnValidSubmit="GuardarPersona">
+                                    <DataAnnotationsValidator />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group text-center">
+                                                <label for="sel1">(*) Tipo Identificación:</label>
+                                                <InputSelect class="form-control" @bind-Value="personaRequest.TipoIdentificacion">
+                                                    <option value="">Seleccione</option>
+                                                    <option value="CC">CC</option>
+                                                    <option value="Cedula Extranjera">Cedula Extranjera</option>
+                                                    <option value="NIT">NIT</option>
+                                                </InputSelect>
+                                                <ValidationMessage For="(()=> personaRequest.TipoIdentificacion)"></ValidationMessage>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group text-center">
+                                                <label for="sel1">(*) Identificación:</label>
+                                                <InputNumber class="form-control" @bind-Value="personaRequest.NumeroIdentificacion"></InputNumber>
+                                                <ValidationMessage For="(()=> personaRequest.NumeroIdentificacion)"></ValidationMessage>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group text-center">
+                                                <label for="sel1">(*) Nombres:</label>
+                                                <InputText class="form-control" @bind-Value="personaRequest.Nombres"></InputText>
+                                                <ValidationMessage For="(()=> personaRequest.Nombres)"></ValidationMessage>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group text-center">
+                                                <label for="sel1">(*) Apellidos:</label>
+                                                <InputText class="form-control" @bind-Value="personaRequest.Apellidos"></InputText>
+                                                <ValidationMessage For="(()=> personaRequest.Apellidos)"></ValidationMessage>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group text-center">
+                                                <label for="sel1">(*) Email:</label>
+                                                <InputText class="form-control" type="email" @bind-Value="personaRequest.Email"></InputText>
+                                                <ValidationMessage For="(()=> personaRequest.Email)"></ValidationMessage>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <button class="mb-2 mr-2 btn-pill btn btn-success" type="submit">Guardar</button>
+                                        </div>
+                                    </div>
+                                </EditForm>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

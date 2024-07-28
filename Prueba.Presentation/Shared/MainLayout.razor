@@ -1,0 +1,32 @@
+﻿@inherits LayoutComponentBase
+@inject IJSRuntime JSRunTime
+
+<PageTitle>Prueba.Presentation</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <AuthorizeView>
+                <div class="nav-item px-3">
+                    <button @onclick="btnLogout_Click" style="border:none; background:none;">Cerrar Sesión</button>                    
+                </div>
+            </AuthorizeView>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private async void btnLogout_Click()
+    {
+        var authModule = await JSRunTime.InvokeAsync<IJSObjectReference>("import", "./js/auth.js");
+        await authModule.InvokeVoidAsync("SignOut", "/");
+    }
+}

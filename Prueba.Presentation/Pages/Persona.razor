@@ -1,0 +1,38 @@
+﻿@page "/persona"
+@inject IPersonaServiceBLL _iPersonaServiceBLL;
+@attribute [Authorize]
+
+<PageTitle>Personas</PageTitle>
+
+<div class="container"></div>
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <div class="col-md-12 text-left">
+            <h1>Personas</h1>
+        </div>
+        <div class="col-md-12 text-center">
+            <button type="button" class="mb-2 mr-2 btn-pill btn btn-success" @onclick="(()=> OpenModal())">Nuevo</button>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <QuickGrid Items="personaResponseIList" Class="mb-0 table table-hover table-response" Theme="" Pagination="@paginationPersona">
+                    <PropertyColumn Property="@(p => p.Id)" Title="ID" Sortable="true" Align="Align.Center"></PropertyColumn>
+                    <PropertyColumn Property="@(p => p.TipoIdentificacion)" Title="TIPO IDENTIFICACION" Sortable="true" Align="Align.Center"></PropertyColumn>
+                    <PropertyColumn Property="@(p => p.NumeroIdentificacion)" Title="IDENTIFICACION" Sortable="true" Align="Align.Center"></PropertyColumn>
+                    <PropertyColumn Property="@(p => p.Nombres)" Title="NOMBRES" Sortable="true" Align="Align.Center"></PropertyColumn>
+                    <PropertyColumn Property="@(p => p.Apellidos)" Title="APELLIDOS" Sortable="true" Align="Align.Center"></PropertyColumn>
+                    <PropertyColumn Property="@(p => p.Email)" Title="EMAIL" Sortable="true" Align="Align.Center"></PropertyColumn>
+                    <PropertyColumn Property="@(p => p.FechaCreacion)" Title="FECHA CREACION" Format="yyyy-MM-dd" Sortable="true" Align="Align.Center"></PropertyColumn>
+                </QuickGrid>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (MostrarModal)
+{
+    <ModalPersona OnClose="@CloseModal"
+                  BuscarPersona="@BuscarPersona">
+    </ModalPersona>
+}

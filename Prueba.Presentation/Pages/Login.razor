@@ -1,0 +1,47 @@
+﻿@page "/login"
+@inject IUsuarioServiceBLL _iUsuarioServiceBLL;
+@inject IJSRuntime JSRunTime
+
+<PageTitle>Login</PageTitle>
+
+<div class="container"></div>
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 offset-md-4 col-sm-12">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1>Iniciar Sesión</h1>
+                        </div>
+                    </div>
+                    <EditForm Model="loginRequest" OnValidSubmit="Loggin">
+                        <DataAnnotationsValidator />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group text-center">
+                                    <label for="sel1">(*) Usuario:</label>
+                                    <InputText class="form-control" @bind-Value="loginRequest.Usuario1"></InputText>
+                                    <ValidationMessage For="(()=> loginRequest.Usuario1)"></ValidationMessage>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group text-center">
+                                    <label for="sel1">(*) Password:</label>
+                                    <InputText class="form-control" type="password" @bind-Value="loginRequest.Pass"></InputText>
+                                    <ValidationMessage For="(()=> loginRequest.Pass)"></ValidationMessage>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button class="mb-2 mr-2 btn-pill btn btn-success" type="submit">Iniciar Sesión</button>
+                            </div>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
